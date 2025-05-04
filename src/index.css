@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --button-width: 3rem; /* Default button width */
+  --gradient-color-1: #6bb1ee;
+  --gradient-color-2: #419a9f;
+  --gradient-color-3: #1d4143;
+  --gradient-color-4: #4caf50;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -9,6 +17,31 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, var(--gradient-color-1), var(--gradient-color-2), var(--gradient-color-3), var(--gradient-color-4));
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite; /* Add dynamic background animation */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure full viewport height */
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 code {
@@ -16,33 +49,55 @@ code {
     monospace;
 }
 
-
 button {
-  width: 3rem;
+  width: var(--button-width);
   height: 3rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  padding: 0.75rem 2rem; /* Increase padding for better button size */
+  font-size: 1rem; /* Ensure consistent font size */
+  text-align: center; /* Align text properly */
 }
 
-@media (min-width: 768px) {
-  button {
-    width: 4rem;
-    height: 4rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  button {
-    width: 5rem;
-    height: 5rem;
-  }
+button:hover {
+  transform: scale(1.1);
+  background-color: #e0f7fa; /* Add hover effect */
 }
 
 .flex {
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center; /* Center items vertically */
+  gap: 1.5rem; /* Add more spacing between buttons */
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .flex {
-    flex-wrap: nowrap;
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    align-items: center;
+    gap: 1rem; /* Adjust spacing for smaller screens */
+  }
+
+  button {
+    width: 100%; /* Make buttons full-width on smaller screens */
+    height: 2.5rem;
+  }
+
+  .text-xl {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  button {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .text-xl {
+    font-size: 1rem;
+  }
+
+  .flex {
+    gap: 0.5rem; /* Reduce gap for very small screens */
   }
 }
