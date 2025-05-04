@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "advanced-tic-tac-toe",
+=======
+  "name": "tic-tac-toe",
+>>>>>>> 2814d3da866a807b5afce0da9a00baf593163870
   "version": "0.1.0",
   "private": true,
   "dependencies": {
